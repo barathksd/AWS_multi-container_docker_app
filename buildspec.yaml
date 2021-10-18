@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+    
+  pre_build:
+    commands: 
+      - echo in pre_build phase
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - BASE = 489724165018.dkr.ecr.ap-northeast-1.amazonaws.com
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      
+  build:
+    commands:
+      - echo Build started
+      - docker build -t mynginx:latest ./nginx
+      - docker build -t mypyweb:latest ./flaskcode
+      - docker build -t mymysql:latest ./mysql
+      - docker tag mynginx:latest $BASE/nginx:latest
+      - docker tag mypyweb:latest $BASE/pyweb:latest
+      - docker tag mymysql:latest $BASE/mysql:latest      
+  post_build:
+    commands:
+    - echo pushing docker images to ECR
+    - docker push $BASE/nginx:latest
+    - docker push $BASE/pyweb:latest
+    - docker push $BASE/mysql:latest
+  
