@@ -9,8 +9,8 @@ phases:
     commands: 
       - echo in pre_build phase
       - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION --no-include-email | docker login --username AWS --password-stdin 489724165018.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - BASE = 489724165018.dkr.ecr.ap-northeast-1.amazonaws.com
+      - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION --no-include-email)
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       
   build:
