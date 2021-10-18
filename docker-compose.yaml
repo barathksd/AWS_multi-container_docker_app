@@ -25,7 +25,7 @@ services:
     container_name: mypyweb
     environment:
       FLASK_DEBUG: 1
-      FLASK_APP: webhook.py
+      FLASK_APP: simpleapp.py
     volumes:
       - ./flaskcode:/test
     #network_mode: host
@@ -35,7 +35,7 @@ services:
         aliases:
           - flask-app
           
-    command: gunicorn --bind 0.0.0.0:5000 --workers 4 "simplepage:myapp()"
+    command: gunicorn --bind 0.0.0.0:5000 --workers 4 "simpleapp:myapp()"
     
 
   mysql:
