@@ -116,7 +116,7 @@
           "sourceVolume": "mysql_init",
           "containerPath": "/docker-entrypoint-initdb.d/:ro",
           "readOnly": true
-        },
+        }
       ]
     }
   ]
