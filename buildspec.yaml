@@ -6,6 +6,10 @@ env:
     dockerEmail: "dockerSecret:dockerEmail"
     dockerPass: "dockerSecret:password"
 
+artifacts:
+  files:
+    - '**/*'
+    
 phases:
   install:
     runtime-versions:
