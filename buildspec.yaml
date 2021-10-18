@@ -1,5 +1,11 @@
 version: 0.2
 
+env:
+  secrets-manager:
+    dockerUser: "dockerSecret:dockerUser"
+    dockerEmail: "dockerSecret:dockerEmail"
+    dockerPass: "dockerSecret:password"
+
 phases:
   install:
     runtime-versions:
@@ -11,8 +17,10 @@ phases:
       - aws --version
       - BASE=489724165018.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - echo $BASE
+      - docker login --username $DockerUser --password $dockerPass
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $BASE
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo 
       
   build:
     commands:
