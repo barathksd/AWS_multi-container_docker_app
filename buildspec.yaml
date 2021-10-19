@@ -25,7 +25,7 @@ phases:
       - docker login --username $dockerUser --password $dockerPass
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $BASE
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - echo 
+
       
   build:
     commands:
@@ -33,9 +33,7 @@ phases:
       - docker build -t mynginx:latest ./nginx
       - docker build -t mypyweb:latest ./flaskcode
       - docker build -t mymysql:latest ./mysql
-      - docker exec -it mypyweb bash
-      - cat simpleapp.py
-      - exit
+
       - docker tag mynginx:latest $BASE/nginx:latest
       - docker tag mypyweb:latest $BASE/pyweb:latest
       - docker tag mymysql:latest $BASE/mysql:latest     
@@ -46,5 +44,5 @@ phases:
     - docker push $BASE/nginx:latest
     - docker push $BASE/pyweb:latest
     - docker push $BASE/mysql:latest
-    - mv 
+
   
