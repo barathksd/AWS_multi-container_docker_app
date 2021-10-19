@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mynginx",
+    "imageUri": "489724165018.dkr.ecr.ap-northeast-1.amazonaws.com/nginx:latest"
+  },
+  {
+    "name": "mypyweb",
+    "imageUri": "489724165018.dkr.ecr.ap-northeast-1.amazonaws.com/pyweb:latest"
+  }
+]

@@ -8,7 +8,7 @@ env:
 
 artifacts:
   files:
-    - 'Dockerrun.aws.json'
+    - 'imagedefinitions.json'
     - 'docker-compose.yml'
     
 phases:
