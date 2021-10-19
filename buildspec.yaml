@@ -30,13 +30,13 @@ phases:
   build:
     commands:
       - echo Build started
-      - docker build -t mynginx:latest ./nginx
-      - docker build -t mypyweb:latest ./flaskcode
-      - docker build -t mymysql:latest ./mysql
+      - docker build -t nginx:latest ./nginx
+      - docker build -t pyweb:latest ./flaskcode
+      - docker build -t mysql:latest ./mysql
 
-      - docker tag mynginx:latest $BASE/nginx:latest
-      - docker tag mypyweb:latest $BASE/pyweb:latest
-      - docker tag mymysql:latest $BASE/mysql:latest     
+      - docker tag nginx:latest $BASE/nginx:latest
+      - docker tag pyweb:latest $BASE/pyweb:latest
+      - docker tag mysql:latest $BASE/mysql:latest     
       
   post_build:
     commands:
