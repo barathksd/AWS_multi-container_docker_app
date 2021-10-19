@@ -6,6 +6,8 @@ Flask
 flask-wtf
 flask-restful
 gunicorn
+pymongo
+pymysql
 sqlalchemy
 requests
 pyyaml
